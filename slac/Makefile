@@ -13,7 +13,8 @@ include ../make.def
 
 # CFLAGS+= -DSLAC_DEBUG
 LDFLAGS+=
-TRASH=*.o *.obj *.exe t t.* *~ *.[0-9][0-9][0-9] 
+TRASH=*.o *.obj *.exe t t.* *~ *.[0-9][0-9][0-9]
+LIBS=libslacevse.a libslacpev.a
 FILES=Makefile *.mak *.sh *.c *.h 
 TOOLS=evse pev
 PAGES=evse.1 pev.1
@@ -22,7 +23,7 @@ PAGES=evse.1 pev.1
 # pseudo targets;
 # --------------------------------------------------------------------
 
-all compile: ${TOOLS}
+all compile: ${TOOLS} ${LIBS}
 compact: compile
 	if [ ! -z ${STRIP} ]; then ${STRIP} ${TOOLS}; fi
 	if [ -x /usr/local/bin/upx ]; then upx --best ${TOOLS}; fi
