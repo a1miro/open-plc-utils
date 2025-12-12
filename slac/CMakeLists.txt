@@ -1,0 +1,7 @@
+file(GLOB SLAC_SRCS *.c)
+foreach(src ${SLAC_SRCS})
+    get_filename_component(bin ${src} NAME_WE)
+    add_executable(${bin} ${src})
+    target_include_directories(${bin} PRIVATE ${CMAKE_SOURCE_DIR}/tools)
+    install(TARGETS ${bin} DESTINATION bin)
+endforeach()
